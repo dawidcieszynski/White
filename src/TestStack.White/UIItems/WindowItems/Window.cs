@@ -221,7 +221,8 @@ UI actions on window needing mouse would not work in area not falling under the 
         {
             var windowPattern = (WindowPattern)Pattern(WindowPattern.Pattern);
             if (!CoreAppXmlConfiguration.Instance.InProc && !IsConsole() &&
-                (windowPattern != null && !windowPattern.WaitForInputIdle(CoreAppXmlConfiguration.Instance.BusyTimeout)))
+                (windowPattern != null && !windowPattern.WaitForInputIdle(CoreAppXmlConfiguration.Instance.BusyTimeout) && 
+                windowPattern.Current.WindowInteractionState != WindowInteractionState.Running))
             {
                 throw new Exception(string.Format("Timeout occured{0}", Constants.BusyMessage));
             }
