@@ -125,7 +125,10 @@ namespace TestStack.White.ScreenObjects
         public virtual void Dispose()
         {
             applicationSession.Save();
-            applicationSession.Dispose();
+            if (!CoreAppXmlConfiguration.Instance.KeepOpenOnDispose)
+            {
+                applicationSession.Dispose();
+            }
             sessionReport.Finish();
         }
 
